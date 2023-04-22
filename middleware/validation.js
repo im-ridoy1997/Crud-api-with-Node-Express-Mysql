@@ -44,4 +44,19 @@ const userCreateValidation = [
   }
 ];
 
-module.exports = { validateCreateData, userCreateValidation };
+const customCreateValidation = (req, res, next) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+      return res.status(400).json({
+        status: 'false',
+        message: 'Missing name or email or password' 
+      });
+  }
+  next();
+}
+
+module.exports = { 
+  validateCreateData, 
+  userCreateValidation, 
+  customCreateValidation 
+};

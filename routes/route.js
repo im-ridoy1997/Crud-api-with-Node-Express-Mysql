@@ -6,6 +6,6 @@ const { uploadFile } = require('../middleware/fileUpload.js');
 
 
 router.get('/', userController.getUser);
-router.post('/create', uploadFile, userController.createUser);
+router.post('/create', uploadFile, validation.customCreateValidation, userController.createUser);
 
 module.exports = router;
